@@ -1,11 +1,15 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "biblio.h"
-#include "biblio_liste.h"
+/*************************************************************************************
 
-void menu()
-{
+ *           A MODIFIER LE FICHIER BIBLIO.H POUR UTILISER UN autre schema de données 
+
+/*************************************************************************************/
+#include "biblio.h" // à modifier "biblio.h" 
+#include "biblio_arbrelex.h"
+
+void menu(){
 	printf("Menu:\n");
 	printf("0-Sortie\n");
 	printf("1-Affichage\n");
@@ -20,7 +24,7 @@ void menu()
 
 int main(int argc, const char *argv[]){
 	if (argc != 3) {
-		fprintf(stderr,"Erreur format: %s <NomFichierBiblio.txt> <NbLigneALire> \n\n", argv[0]);
+		fprintf(stderr,"Erreur, usage: %s <NomFichierBiblio.txt> <NbLigneALire> \n\n", argv[0]);
 		return (EXIT_FAILURE);
 	}
 	//les parametre de la fonction main: nom fic et nlignes 
@@ -35,7 +39,6 @@ int main(int argc, const char *argv[]){
 	Biblio *biblio = charge_n_entrees(nomfic, nlignes);
 	int ch;
 	do {
-		//printf("\nLa bibliotheque contient %d elements.\n", biblio->nE);
 		menu();
 		int lus = scanf("%d", &ch);
 		if (lus == 0)
@@ -81,7 +84,7 @@ int main(int argc, const char *argv[]){
 					else affiche(r);
 					break;
 				}
-			case 6 :
+			case 6 : // inser nouvelle case
 				{
 					printf("Saisir le titre \n");
 					scanf(" %248[^\n]", titre);

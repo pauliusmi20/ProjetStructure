@@ -1,5 +1,9 @@
 {
     "files.associations": {
-        "biblio.h": "c"
+        "biblio.h": "c",
+        "biblio_arbrelex.h": "c",
+        "assert.h": "c",
+        "string.h": "c",
+        "biblio_liste.h": "c"
     }
 }

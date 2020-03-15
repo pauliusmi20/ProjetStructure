@@ -1,5 +1,5 @@
 #include "biblio.h"
-#include "biblio_liste.h"
+#include "biblio_arbrelex.h"
 
 Biblio *charge_n_entrees(const char *nom_fichier, int n){
     FILE *fic=NULL;
@@ -18,12 +18,13 @@ Biblio *charge_n_entrees(const char *nom_fichier, int n){
         char* buf_titre=NULL; 
         int buf_num=0; 
         int taille;
+        //On parse une ligne entière
         int parse_success= (parse_int(fic,&buf_num )&&
-        parse_char     (fic,'\t')&&
-        parse_string   (fic, &buf_titre, &taille, '\t' ) &&
-        parse_char     (fic,'\t')&&
-        parse_string   (fic, &buf_artiste, &taille, '\n' ) &&    
-        parse_char     (fic,'\n'));
+            parse_char     (fic,'\t')&&
+            parse_string   (fic, &buf_titre, &taille, '\t' ) &&
+            parse_char     (fic,'\t')&&
+            parse_string   (fic, &buf_artiste, &taille, '\n' ) &&    
+            parse_char     (fic,'\n'));
         if (!parse_success){
             fprintf( stderr, "Echec lors du parse de data.\n "); 
             break;      // on retourne pour ne plus enregister les buff..

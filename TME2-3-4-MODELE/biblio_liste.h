@@ -3,6 +3,23 @@
 
 #include "biblio.h"
 
+
+//les cellules
+typedef struct CellMorceau{
+    struct CellMorceau *suiv;
+    int num;
+    char *titre;
+    char *artiste;
+}CellMorceau;
+
+// la collection
+typedef struct Biblio {
+    CellMorceau *L;
+    int nE;
+}Biblio;
+
+
+
 /* Alloue et retourne l'adresse d'une nouvelle Biblio */
 Biblio *nouvelle_biblio(void);
 

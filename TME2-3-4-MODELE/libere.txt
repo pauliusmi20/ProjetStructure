@@ -1,0 +1,43 @@
+
+//libere la memoire alloué
+//fonction recursive
+/*----------------------------------------------------------------------
+void libere_liste_rec(Biblio **B){
+    Noeud *L=(*B)->A;
+    Noeud *prev=L;
+        if(!B){
+        return;
+    }else if(L->car_suiv && L->liste_car){ //most common case
+        libere_liste_rec(L->car_suiv);
+        libere_liste_rec(L->car_suiv);
+        free(L->car_suiv);
+    }if (L->car_suiv && !L->liste_car){
+        libere_liste_rec(L->car_suiv);
+        free(L->car_suiv);
+    }else if (L->car_suiv && !L->liste_car) { 
+        libere_liste_rec(L->liste_car);
+        free(L->liste_car);
+    }else if (!(L->car_suiv && L->liste_car) ){
+        if (L->liste_morceaux)
+    }
+    
+
+}
+
+    if (!L ){
+        return;
+    }
+    if (L->liste_morceaux){//si il contient des morceau on les libères
+        libere_arbre_rec(L->liste_morceaux);//appel de f recursive
+        free(L->liste_morceaux);//on suppose que la DE-ALLOC de STRING est faite
+        //printf("On désalloue la mémoire dédier au noeud de la lettre %c.\n");
+    }
+    if (L->car_suiv) {
+        libere_liste_rec(L->liste_car);
+        free(L->liste_car);
+    }
+    if (L->liste_car){
+        libere_liste_rec(L->car_suiv);
+        free(L->car_suiv);
+    }
+  */  

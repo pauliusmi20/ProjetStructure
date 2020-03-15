@@ -1,28 +1,24 @@
+#include "biblio.h"
 #include "biblio_hachage.h"
 
-Biblio *nouvelle_biblio(void) 
-{
+Biblio *nouvelle_biblio(void) {
    
 }
 
-void libere_biblio(Biblio *B)
-{
+void libere_biblio(Biblio *B){
     
 }
 
 
-void insere(Biblio *B, int num, char *titre, char *artiste)
-{
+void insere(Biblio *B, int num, char *titre, char *artiste){
     
 }
 
-void afficheMorceau(CellMorceau *cell)
-{
+void afficheMorceau(CellMorceau *cell){
 	printf("§§ %8d § %-32.32s § %-32.32s §§\n", cell->num, cell->titre, cell->artiste);
 }
 
-void affiche(Biblio *B)
-{
+void affiche(Biblio *B){
     
 }
 

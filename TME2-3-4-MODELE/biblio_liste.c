@@ -1,16 +1,12 @@
 #include "biblio.h"
 #include "biblio_liste.h"
-#include <unistd.h>
 
-
-
-Biblio * nouvelle_biblio(void) {
-	Biblio *new = malloc(sizeof(Biblio));
-    new->nE=0;
-    new->L=NULL;
-    return new;
+Biblio *nouvelle_biblio(void) {
+	Biblio *bib = malloc(sizeof(Biblio));
+    bib->nE=0;
+    bib->L=NULL;
+    return bib;
 }
-
 
 void libere_biblio(Biblio *B){
 	CellMorceau *prev=NULL, *list=B->L;
@@ -22,15 +18,15 @@ void libere_biblio(Biblio *B){
     free(B);
 }
 
+
 // ON insere au début car cette méthode est beaucop plus rapide(d'ou l'utilisaton du poiinteur **, car on modifie l'adresse du pointeur *B).
 // (complexité inferieur)
 // insertion a la fin= parcours jusqu'a fin de liste a chaque insertion 
 //simlement chainée.
 
 void insere(Biblio **B, int num, char *titre, char *artiste){ 
-    assert(*B); //test si vide 
     //initialisons la nouvelle cellule
-    CellMorceau *new = malloc(sizeof(CellMorceau));
+    CellMorceau *new =(CellMorceau*) malloc(sizeof(CellMorceau));
     new->num=num;
     new->titre=titre;
     new->artiste=artiste;
@@ -49,6 +45,7 @@ void afficheMorceau(CellMorceau *cell){
     //printf("%d \t %s \t %s\n", cell->num, cell->titre, cell->artiste);
  }
 
+
 void affiche(Biblio *B){
     assert(B);
     CellMorceau *list = B->L; 
@@ -59,8 +56,6 @@ void affiche(Biblio *B){
    }
 }
 
-
-
 Biblio *uniques (Biblio *B){
     
 }
@@ -70,7 +65,8 @@ CellMorceau *rechercheParNum(Biblio *B, int num){
     CellMorceau *res=NULL, *list=B->L; 
 	while(list){
        if (list->num==num) {
-           res=list; break;
+           res=list; 
+           break;
        }
        list=list->suiv;
    }
@@ -111,22 +107,24 @@ void insereSansNum(Biblio **B, char *titre, char *artiste){
 }
 
 int supprimeMorceau(Biblio **B, int num){
-	CellMorceau *prev=NULL, *list=(*B)->L;
+	assert(*B);
+    CellMorceau *prev=NULL, *list=(*B)->L;
     int res=0;
-    while (list && !res){
+    while (list && !res){ 
         if (list->num==num){// Les cas si on trouve num dans le catalogue :
-            if (prev==NULL){        // -premier element correspond à num
+            if (!prev){        // -premier element correspond à num
                 prev=(*B)->L;          
                 (*B)->L = list->suiv;
                 free(prev);
             }
-            else if (list->suiv== NULL){ // -dernier element correspond à num
+            else if (!list->suiv){ // -dernier element correspond à num
                 free(list);
                 prev->suiv=NULL;
             }else{
                 prev->suiv=list->suiv;   // -tout les autres elements
                 free(list);     
-            }           
+            }
+            (*B)->nE--;           
             res=1;  //succes:
             break; // on sort de la boucle.
         }

@@ -1,6 +1,5 @@
-#ifndef _BIBLIO_ARBRE_LEX_H_
-#define _BIBLIO_ARBRE_LEX_H_
-
+#ifndef _BIBLIO_LISTE_H_
+#define _BIBLIO_LISTE_H_
 
 typedef struct CellMorceau{
     struct CellMorceau *suiv;
@@ -11,16 +10,19 @@ typedef struct CellMorceau{
 
 
 typedef struct Noeud {
-    struct Noeud *liste_car;
-    struct Noeud *car_suiv;
-    CellMorceau *liste_morceaux;
     char car;
+    CellMorceau *liste_morceaux;
+    struct Noeud *car_suiv;
+    struct Noeud *liste_car;
 } Noeud;
 
 
-struct Biblio {
+typedef struct Biblio {
     int nE;
     Noeud *A;
-};
+}Biblio;
 
+//fonction recusrive qui désaloue la la memoire allouer precedéament
+void libere_arbre_rec(Noeud *L);
+void libere_list_morceau_term(CellMorceau *L);
 #endif
